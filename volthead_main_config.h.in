@@ -1,0 +1,4 @@
+#define volthead_main_VERSION_MAJOR @volthead_main_VERSION_MAJOR@
+#define volthead_main_VERSION_MINOR @volthead_main_VERSION_MINOR@
+#define volthead_main_SOURCE_DIR    "@CMAKE_CURRENT_SOURCE_DIR@"
+#define volthead_main_BIN_DIR       "@CMAKE_BINARY_DIR@"
