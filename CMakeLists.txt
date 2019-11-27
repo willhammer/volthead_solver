@@ -12,14 +12,15 @@ set(MAIN_PROJECT_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
 set(MAIN_PROJECT_DIR main)
 set(MAIN_PROJECT_NAME volthead_main)
 set(SUPPORTED_FILE_EXTENSIONS "cxx;cpp;c;h;hpp;hxx;py")
-set(AVAILABLE_LIBRARIES main python_loader)
 set(SOURCE_FILES "")
+#====ALL LIBRARIES SHOULD BE MENTIONED HERE=======
+set(AVAILABLE_LIBRARIES python_loader)
 
 #==============PROJECT SETUP======================
 project(${MAIN_PROJECT_NAME} VERSION 0.1 LANGUAGES C CXX)
 configure_file(${MAIN_PROJECT_NAME}_config.h.in "${MAIN_PROJECT_SOURCE_DIR}/${MAIN_PROJECT_DIR}/${MAIN_PROJECT_NAME}_config.h")
 
-#================FUNCTIONS============================
+#================FUNCTIONS========================
 function(populate_files_for_library library_name) 
 	set(SOURCE_FILES "")
 	set(FULL_PATH ${MAIN_PROJECT_SOURCE_DIR}/${library_name})
@@ -33,6 +34,9 @@ endfunction()
 populate_files_for_library(main)
 add_executable(${MAIN_PROJECT_NAME} ${SOURCE_FILES})
 
+#==========REPEAT THIS FOR EACH LIBRARY===========
 populate_files_for_library(python_loader)
 add_library(python_loader ${SOURCE_FILES})
-target_link_libraries(${MAIN_PROJECT_NAME} python_loader)
+
+#=====THIS LINKS ALL LIBRARIES TO MAIN FOR NOW====
+target_link_libraries(${MAIN_PROJECT_NAME} ${AVAILABLE_LIBRARIES})
