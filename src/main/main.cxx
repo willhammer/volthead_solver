@@ -3,6 +3,8 @@
 #include <cstdlib>
 #include <string>
 #include <sstream>
+#include <conio.h>
+#include <Python.h>
 
 namespace
 {
@@ -28,6 +30,19 @@ namespace
         printf("SOURCE DIR: %s\n", volthead_main_SOURCE_DIR);
         printf("BINARY DIR: %s\n", volthead_main_BIN_DIR);
     }
+
+    int RunBasePy()
+    {
+        PyObject* pInt = nullptr;
+        Py_Initialize();
+        PyRun_SimpleString("print('Hello World from Embedded Python!!!')");
+        Py_Finalize();
+        printf("\nPress any key to exit...\n");
+        int a;
+        std::cin >> a;
+
+        return 0;
+    }
 }
 
 int main(int argc, char **argv)
@@ -37,6 +52,9 @@ int main(int argc, char **argv)
 
     print_version(argc, argv);    
     print_dirs();
+
+    RunBasePy();
+
     return 1;
 }
 

@@ -1,0 +1,3 @@
+﻿  Building Custom Rule F:/workdir/projects/volthead_solver/CMakeLists.txt
+  main.cxx
+LINK : fatal error LNK1104: cannot open file 'python37.lib'
